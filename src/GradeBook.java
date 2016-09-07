@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Date;
 
 public class GradeBook 
 {
@@ -84,6 +84,10 @@ public class GradeBook
 				sc.nextLine();
 				
 		}
+		Date date = new Date();
+		
+		System.out.printf("\n%tc\n", date);
+		
 		System.out.printf("Number of Students\t %d\n", c);
 		int i;
 		double sum;
