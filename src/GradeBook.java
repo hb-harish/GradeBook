@@ -25,65 +25,87 @@ public class GradeBook
 		ee =0;
 		ec =0;
 		cs =0;
+		String Gender;
+		String Major ;
+		String State ;
 		Scanner sc = new Scanner(System.in);
-		for (int i=0; i<100; i++)
+		try
 		{
-			System.out.println("Enter Name,Grade,Gender,Major,State of Origin,Score");
-				sc.next();
-				sc.next();
-				String Gender = sc.next();
-				String Major = sc.next();
-				String State = sc.next();
-				score[i] = sc.nextDouble();
-				c++;
-				if (Gender.equals("M"))
-				{
-					males[m] = score[i];
-					m++;
-				}
-				if (Gender.equals("F"))
-				{
-					females[f] = score[i];
-					f++;
-				} 
-				if (Major.equals("Econ"))
-				{
-					ecn[ec] = score[i];
-					ec++;
-				}
-				if (Major.equals("CompSci"))
-				{
-					csc[cs] = score[i];
-					cs++;
-				}
-				if (Major.equals("EE"))
-				{
-					eeg[ee] = score[i];
-					ee++;
-				}
-				if (State.equals("MD"))
-				{
-					mds[md] = score[i];
-					md++;
-				}
-				if (State.equals("DC"))
-				{
-					dcs[dc] = score[i];
-					dc++;
-				}
-				if (State.equals("VA"))
-				{
-					vas[va] = score[i];
-					va++;
-				}
-				sc.nextLine();
-				System.out.println("DO you want to continue - \"yes\" or \"no\"");
-				String t = sc.next();
-				if (t.equals("no"))
-					break;
-				sc.nextLine();
-				
+			for (int i=0; i<100; i++)
+			{
+				System.out.println("Enter Name,Grade,Gender,Major,State of Origin,Score");
+					sc.next();
+					sc.next();
+					Gender = sc.next();
+					Major = sc.next();
+					State = sc.next();
+					score[i] = sc.nextDouble();
+					c++;
+					if (Gender.equals("M"))
+					{
+						males[m] = score[i];
+						m++;
+					}
+					if (Gender.equals("F"))
+					{
+						females[f] = score[i];
+						f++;
+					} 
+					if (Major.equals("Econ"))
+					{
+						ecn[ec] = score[i];
+						ec++;
+					}
+					if (Major.equals("CompSci"))
+					{
+						csc[cs] = score[i];
+						cs++;
+					}
+					if (Major.equals("EE"))
+					{
+						eeg[ee] = score[i];
+						ee++;
+					}
+					if (State.equals("MD"))
+					{
+						mds[md] = score[i];
+						md++;
+					}
+					if (State.equals("DC"))
+					{
+						dcs[dc] = score[i];
+						dc++;
+					}
+					if (State.equals("VA"))
+					{
+						vas[va] = score[i];
+						va++;
+					}
+					sc.nextLine();
+					System.out.println("DO you want to continue - \"yes\" or \"no\"");
+					String t = sc.next();
+					if (t.equals("no"))
+						break;
+					sc.nextLine();
+					
+			}
+		}catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Database too big");
+		}catch (ArrayStoreException h)
+		{
+			System.out.println("Score has to be numeric");
+		}catch (Exception z)
+		{
+			System.out.println("Error");
+			System.out.println(z.getMessage());
 		}
+		finally
+		{
+			System.out.println("Thank you for your input");
+		}
+		
+		
 		Date date = new Date();
 		
 		System.out.printf("\n%tc\n", date);
@@ -97,27 +119,53 @@ public class GradeBook
 		{
 			sum = sum + score[i];
 		}
-		sum = sum/i;
+		try
+		{
+			sum = sum/i;
+		}catch (ArithmeticException	c1)
+		{
+			System.out.println("Not enough records\n");
+		}
 		
 		System.out.printf("Overall Average\t %.02f\n", sum);
-		
+		try
+		{
 		sum =0;;
+		
 		for ( i=0;i<m ;i++ )
 		{
 			sum = sum + males[i];
 		}
-		sum = sum/i;
 		
+			sum = sum/i;
+			
+		}catch (ArithmeticException	c1)
+		{
+			System.out.println("Not enough males\n");
+		}
 		System.out.printf("Average for Gender M\t %.02f\n", sum);
 		
-		sum =0;;
+		
+		sum =0;
 		for ( i=0;i<f ;i++ )
 		{
 			sum = sum + females[i];
+		
 		}
+
 		sum = sum/i;
+		try
+		{
+			sum = sum/i;
+			
+		}catch (Exception c1)
+		{
+			System.out.println("Not enough females\n");
+		}
 		
 		System.out.printf("Average for Gender F\t %.02f\n", sum);
+		
+		
 		
 		sum =0;;
 		for ( i=0;i<ec ;i++ )
