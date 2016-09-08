@@ -128,15 +128,15 @@ public class GradeBook
 		}
 		
 		System.out.printf("Overall Average\t %.02f\n", sum);
-		try
-		{
+		
 		sum =0;;
 		
 		for ( i=0;i<m ;i++ )
 		{
 			sum = sum + males[i];
 		}
-		
+		try
+		{
 			sum = sum/i;
 			
 		}catch (ArithmeticException	c1)
